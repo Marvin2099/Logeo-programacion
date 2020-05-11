@@ -16,6 +16,12 @@
   	<description></description>
   	<servlet-class>com.marvin.control.ServeletUse</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ServeletHistorial</servlet-name>
+  	<display-name>ServeletHistorial</display-name>
+  	<description></description>
+  	<servlet-class>com.marvin.control.ServeletHistorial</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ServeletUser</servlet-name>
   	<url-pattern>/ServeletUser</url-pattern>
@@ -23,5 +29,9 @@
   <servlet-mapping>
   	<servlet-name>ServeletUse</servlet-name>
   	<url-pattern>/ServeletUse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ServeletHistorial</servlet-name>
+  	<url-pattern>/ServeletHistorial</url-pattern>
   </servlet-mapping>
 </web-app>

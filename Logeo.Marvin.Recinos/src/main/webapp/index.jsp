@@ -23,11 +23,12 @@
 <br>
 <input  class="text text-light" type="text" name="usuario" placeholder="email@example.com">
 <br>
-<label class="text text-info">Contrasenia:</label>
+<label class="text text-info">Contraseña:</label>
 <br>
-<input class="text text-light" type="password" name="contra1" placeholder="Contrasenia">
+<input class="text text-light" type="password" name="contra1" placeholder="Contraseña">
 <br>
 <input type="submit" value="Iniciar" class="btn btn-outline-primary">
+
 </h1>
 </form>
 </div>

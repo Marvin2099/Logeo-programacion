@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import com.marvin.modelo.TbUsuariop;
+import com.marvin.model.TbUsuariop;
 
 public class ClienteDAO {
 
@@ -24,6 +24,12 @@ public class ClienteDAO {
 			Usuario = em.createQuery("from TbUsuariop as u where u.usuario = '"+usu.getUsuario()+"' and u.contrasenia='"+usu.getContrasenia()+"'").getResultList();
 			
 			em.getTransaction().commit();
+			
+			for(TbUsuariop datos: Usuario) {
+			
+				usu.setIdUsuarios(datos.getIdUsuarios());
+				
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e+"Error");

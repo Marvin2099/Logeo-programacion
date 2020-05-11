@@ -1,13 +1,19 @@
 package com.marvin.control;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.marvin.DAO.ClienteDAO;
-import com.marvin.modelo.TbUsuariop;
+import com.marvin.DAO.HistorialDao;
+import com.marvin.model.TbHistorial;
+import com.marvin.model.TbUsuariop;
+
 
 /**
  * Servlet implementation class ServeletUse
@@ -40,6 +46,17 @@ public class ServeletUse extends HttpServlet {
 		
 		String usu = request.getParameter("usuario");
 		String contrase = request.getParameter("contra1");
+		String Cerrar = request.getParameter("btncerrar");
+		
+		if(Cerrar!=null) {
+			if(Cerrar.equals("CERRAR")) {
+				HttpSession CerrarSesiones = (HttpSession) request.getSession();
+				CerrarSesiones.invalidate();
+				
+				response.sendRedirect("index.jsp");
+			}
+		}
+		else {
 		
 		TbUsuariop usuario = new TbUsuariop();
 		ClienteDAO usuDao = new ClienteDAO();
@@ -50,16 +67,27 @@ public class ServeletUse extends HttpServlet {
 		int verificarusuario = usuDao.LoginUsuario(usuario).size();
 		
 		if(verificarusuario==1) {
-			System.out.print("Bienvenido " + usu);
+			System.out.println("Bienvenido " +usu);
+			TbHistorial histo = new TbHistorial();
+			HistorialDao histodao = new HistorialDao();
+			Date fecha = new Date();
+			
+			histo.setFecha(fecha);
+			usuario.setIdUsuarios(usuario.getIdUsuarios());
+			histo.setTbUsuariop(usuario);
+			histodao.agregarDatosHistorial(histo);
+			
+			
+			HttpSession sesion = request.getSession(true);
+			sesion.setAttribute("usuario", usu);
+			response.sendRedirect("Principal.jsp");
 			
 		}else {
+			response.sendRedirect("index.jsp");
 			System.out.print("Usuario o contraseña incorrecta");
 		}
 		
-		
-		response.sendRedirect("index.jsp");
-		
-		
 	}
 
+}
 }
